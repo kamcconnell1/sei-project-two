@@ -1,11 +1,16 @@
 import React from 'react'
 import axios from 'axios'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+
+
 const favourites = []
 class Home extends React.Component {
   state = {
     gifs: [],
-    tags: ''
+    tags: '',
+    copied: false
   }
+
   async componentDidMount() {
     // console.log(this.state.tags)
     try {
@@ -54,24 +59,44 @@ class Home extends React.Component {
     // console.log(this.state.tags)
     // console.log(...this.state.favourites)
     return (
-      <section className="section">
+      <section className="section home-page">
         <div className="container">
           <h1 className="title is-1 has-text-centered">What do you meme?</h1>
-          <div className="columns">
-            <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter box">
-              <div className="control">
-                <input 
-                  className="input" 
-                  placeholder="Search for GIF"
-                  name="name"
-                  onChange={this.handleChange}
-                />
-                <button type="submit" className="button is-primary">Search</button>
+          <div className="column is-10 is-offset-1">
+            <form onSubmit={this.handleSubmit}>
+              <div className="field has-addons">
+                <div className="control is-expanded">
+                  <input 
+                    className="input is-medium" 
+                    placeholder="Search for GIF"
+                    name="name"
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <button type="submit" className="button is-medium">Search</button>
               </div>
             </form>
-            <img src={this.state.gifs.url} alt={this.state.gifs.name}/>
-            <button onClick={this.handleClick} type="button" className="button is-primary">Try again</button>
-            <button onClick={this.addToFavourites} type="button" className="button">Add to favourites</button>
+          </div>
+          <div className="column is-7 is-offset-2">
+            <div className="control">
+              <img className="gif" src={this.state.gifs.url} alt={this.state.gifs.name}/>
+            </div>
+            <div className="column">
+              <div className="buttons control is-centered">
+                <button onClick={this.handleClick} type="button" className="button gif-button">Try again</button>
+                <button onClick={this.addToFavourites} type="button" className="button gif-button">
+                  <span className="icon">
+                    <i className="fas fa-heart"></i>
+                  </span>
+                  <span>Add to favourites</span>
+                </button>
+
+                <CopyToClipboard text={this.state.gifs.url}
+                  onCopy={() => this.setState({ copied: true })}>
+                  <button type="button" className="button gif-button">Copy to clipboard</button>
+                </CopyToClipboard>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -79,3 +104,4 @@ class Home extends React.Component {
   }
 }
 export default Home
+

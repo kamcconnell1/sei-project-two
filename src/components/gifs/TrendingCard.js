@@ -1,4 +1,5 @@
 import React from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const TrendingCard = ({ images }) => {
   
@@ -14,6 +15,9 @@ const TrendingCard = ({ images }) => {
             <img src={images.original.url} alt={'gif'} />
           </figure>
         </div>
+        <CopyToClipboard text={images.original.url}>
+          <button type="button" >Copy to clipboard</button>
+        </CopyToClipboard>
       </div>
     </div>
 

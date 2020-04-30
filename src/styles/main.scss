@@ -1,1 +1,56 @@
-@import '~bulma/bulma.sass'
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto&display=swap');
+
+// Global styling
+* {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: #000;
+}
+body {
+  background-color: #000;
+  height: 100%;
+}
+nav.navbar {
+  background-color: #F8F32B;
+  a.navbar-item{
+    font-family: 'Press Start 2P', sans-serif;
+    color: #000;
+  }
+  a.navbar-item:focus {
+    color: #a30bc9;
+  }
+  a.navbar-item:hover {
+    color: #ED7CAD;
+  }
+}
+img {
+  border: 1px solid #FFF;
+}
+// Home page
+section.home-page {
+  max-height: 100vh;
+  h1.title {
+    padding: 1.5em 0;
+    font-family: 'Press Start 2P', sans-serif;
+    text-shadow: 2px 2px #7EE8FA;
+    color: #FFF;
+  }
+  img.gif {
+    width: 100%;
+    max-height: 500px;
+  }
+  button.button {
+    background: #80FF72;
+    border-bottom: 4px solid #7EE8FA;
+    font-family: 'Courier New', Courier, monospace;
+    button.gif-button {
+      margin: 10px;
+      width: 200px;
+    }
+  }
+}
+.fa-heart {
+  color:red;
+}
+@import '~bulma/bulma.sass';
