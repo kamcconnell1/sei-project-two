@@ -1,21 +1,19 @@
 import React from 'react'
-import axios from 'axios'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-
-
-const favourites = []
+import { getPageLoadGif, getSearchResultGif, getTryAgainGif } from '../../lib/api'
+import FavouritesButton from '../common/FavouritesButton'
+import CopyButton from '../common/CopyButton'
+import Spinner from '../common/Spinner'
 class Home extends React.Component {
   state = {
     gifs: [],
     tags: '',
     copied: false
   }
-
   async componentDidMount() {
     // console.log(this.state.tags)
     try {
-      const res = await axios.get('https://api.giphy.com/v1/gifs/translate?api_key=BKW4vtptPcAlCG1mhESJtSgdfRScl4eQ&s=funny')
       // console.log(res.data.data.images.original)
+      const res = await getPageLoadGif()
       this.setState({ gifs: res.data.data.images.original })
     } catch (err) {
       console.log(err)
@@ -29,30 +27,22 @@ class Home extends React.Component {
     console.log('clicked search')
     event.preventDefault()
     try {
-      const res = await axios.get(`https://api.giphy.com/v1/gifs/translate?api_key=BKW4vtptPcAlCG1mhESJtSgdfRScl4eQ&s=${this.state.tags}`)
+      const res = await getSearchResultGif(this.state.tags)
       // console.log(res.data.data)
       this.setState({ gifs: res.data.data.images.original })
     } catch (err) {
-      console.log(err)
+      console.log(err.response)
     }
   }
   handleClick = async() => {
     console.log('clicked try again')
     try {
-      const res = await axios.get(`https://api.giphy.com/v1/gifs/random?api_key=BKW4vtptPcAlCG1mhESJtSgdfRScl4eQ&tag=${this.state.tags}`)
-      // console.log(res.data.data)
+      const res = await getTryAgainGif(this.state.tags)
+      console.log(res.data.data)
       this.setState({ gifs: res.data.data.images.original })
     } catch (err) {
       console.log(err)
     }
-  }
-  addToFavourites = () => {
-    // this.setState(previousState => ({
-    //   favourites: [...previousState.favourites, this.state.gifs.url]
-    // }))
-    favourites.push(this.state.gifs.url)
-    console.log('added to:', favourites)
-    localStorage.setItem('favourites', JSON.stringify(favourites))
   }
   render() {
     // console.log(this.state.gifs.url)
@@ -77,7 +67,7 @@ class Home extends React.Component {
               </div>
             </form>
           </div>
-          <div className="column is-7 is-offset-2">
+          <div className="column is-6 is-offset-3">
             <div className="control">
               <img className="gif" src={this.state.gifs.url} alt={this.state.gifs.name}/>
             </div>
@@ -88,21 +78,10 @@ class Home extends React.Component {
                     <i className="far fa-grin-tongue-squint"></i>
                   </span>
                   <span>Try again</span></button>
-                <button onClick={this.addToFavourites} type="button" className="button gif-button">
-                  <span className="icon">
-                    <i className="fas fa-heart"></i>
-                  </span>
-                  <span>Add to favourites</span>
-                </button>
 
-                <CopyToClipboard text={this.state.gifs.url}
-                  onCopy={() => this.setState({ copied: true })}>
-                  <button type="button" className="button gif-button">
-                    <span className="icon">
-                      <i className="far fa-copy"></i>
-                    </span>
-                    <span>Copy to clipboard</span></button>
-                </CopyToClipboard>
+                <FavouritesButton favourite={this.state.gifs.url} />
+                <CopyButton copy={this.state.gifs.url} />
+                
               </div>
             </div>
           </div>
@@ -112,4 +91,3 @@ class Home extends React.Component {
   }
 }
 export default Home
-

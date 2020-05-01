@@ -1,12 +1,16 @@
 import React from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
+import FavouritesError from './FavouritesError'
+import CopyButton from '../common/CopyButton'
+
 const Favourites = () => {
   const JSONfavourites = localStorage.getItem('favourites')
   const realfavourites = JSON.parse(JSONfavourites)
   console.log(realfavourites)
-  if (!realfavourites) return <h2 className="title is-2 is-warning">Oops, looks like nothing has been added yet. Go back to add now!</h2>
-  //--------------------------------NEED TO ADD GIF HERE & TIMEOUT?---------------------------------------------
+  
+  if (!realfavourites) return <FavouritesError />
+
 
   return (
     <section className="section favourites">
@@ -20,13 +24,7 @@ const Favourites = () => {
                     <img src={gif} alt={'gif'} />
                   </figure>
                 </div>
-                <CopyToClipboard text={gif}>
-                  <button type="button" className="button">
-                    <span className="icon">
-                      <i className="far fa-copy"></i>
-                    </span>
-                    <span>Copy to clipboard</span></button>
-                </CopyToClipboard>
+                <CopyButton copy={gif} />
               </div>
             </div>
           ))}
