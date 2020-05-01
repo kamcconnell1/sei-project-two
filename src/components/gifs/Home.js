@@ -14,7 +14,7 @@ class Home extends React.Component {
   async componentDidMount() {
     // console.log(this.state.tags)
     try {
-      const res = await axios.get('https://api.giphy.com/v1/gifs/translate?api_key=BKW4vtptPcAlCG1mhESJtSgdfRScl4eQ&s=happy')
+      const res = await axios.get('https://api.giphy.com/v1/gifs/translate?api_key=BKW4vtptPcAlCG1mhESJtSgdfRScl4eQ&s=funny')
       // console.log(res.data.data.images.original)
       this.setState({ gifs: res.data.data.images.original })
     } catch (err) {
@@ -83,7 +83,11 @@ class Home extends React.Component {
             </div>
             <div className="column">
               <div className="buttons control is-centered">
-                <button onClick={this.handleClick} type="button" className="button gif-button">Try again</button>
+                <button onClick={this.handleClick} type="button" className="button gif-button">
+                  <span className="icon">
+                    <i className="far fa-grin-tongue-squint"></i>
+                  </span>
+                  <span>Try again</span></button>
                 <button onClick={this.addToFavourites} type="button" className="button gif-button">
                   <span className="icon">
                     <i className="fas fa-heart"></i>
@@ -93,7 +97,11 @@ class Home extends React.Component {
 
                 <CopyToClipboard text={this.state.gifs.url}
                   onCopy={() => this.setState({ copied: true })}>
-                  <button type="button" className="button gif-button">Copy to clipboard</button>
+                  <button type="button" className="button gif-button">
+                    <span className="icon">
+                      <i className="far fa-copy"></i>
+                    </span>
+                    <span>Copy to clipboard</span></button>
                 </CopyToClipboard>
               </div>
             </div>

@@ -16,7 +16,11 @@ const TrendingCard = ({ images }) => {
           </figure>
         </div>
         <CopyToClipboard text={images.original.url}>
-          <button type="button" >Copy to clipboard</button>
+          <button type="button" className="button">
+            <span className="icon">
+              <i className="far fa-copy"></i>
+            </span>
+            <span>Copy to clipboard</span></button>
         </CopyToClipboard>
       </div>
     </div>
