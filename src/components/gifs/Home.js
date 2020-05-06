@@ -2,7 +2,8 @@ import React from 'react'
 import { getPageLoadGif, getSearchResultGif, getTryAgainGif } from '../../lib/api'
 import FavouritesButton from '../common/FavouritesButton'
 import CopyButton from '../common/CopyButton'
-import Spinner from '../common/Spinner'
+
+
 class Home extends React.Component {
   state = {
     gifs: [],

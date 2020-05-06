@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
-    <nav className="navbar is-warning">
+    <nav className="navbar">
       <div className="container">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">Home</Link>
@@ -13,4 +13,5 @@ const Navbar = () => {
     </nav>
   )
 }
+
 export default Navbar
