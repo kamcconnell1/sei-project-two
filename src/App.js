@@ -11,7 +11,7 @@ import Favourites from './components/gifs/Favourites'
 import Footer from './components/common/Footer'
 
 
-console.log(process.env.REACT_APP_MY_SECRET_KEY)
+
 
 
 const App = () => {
