@@ -1,5 +1,4 @@
 import React from 'react'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import FavouritesError from './FavouritesError'
 import CopyButton from '../common/CopyButton'

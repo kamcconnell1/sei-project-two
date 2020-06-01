@@ -52,7 +52,7 @@ class Home extends React.Component {
     return (
       <section className="section home-page">
         <div className="container">
-          <h1 className="title is-1 has-text-centered">What do you meme?</h1>
+          <h1 className="title is-1 has-text-centered">Get-a-Gif</h1>
           <div className="column is-10 is-offset-1">
             <form onSubmit={this.handleSubmit}>
               <div className="field has-addons">
