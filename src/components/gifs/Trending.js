@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 
 import { getTrendingGifs } from '../../lib/api'
 import TrendingCard from './TrendingCard'

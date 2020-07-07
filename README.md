@@ -4,7 +4,7 @@
 
 Get-a-Gif was a pair coded project built within 48 hours. It is a fun app which pulls from the Giphy API and allows users to search for and save Gifs. This was my first project using React and a public API. 
 
-Please see a hosted version here:  https://get-a-gif.netlify.app
+Please see a hosted version here:  [Get-a-Gif](https://get-a-gif.netlify.app)
 - - - -
 ### Brief
 The app had to: 
